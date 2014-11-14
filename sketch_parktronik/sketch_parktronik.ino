@@ -1,8 +1,10 @@
+#define ledPin 3
 #define trigPin 13
 #define echoPin 12
 
-void setup() {
-  Serial.begin (9600);
+void setup() {            
+  Serial.begin (9600);  
+  pinMode(ledPin, OUTPUT);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 }
@@ -20,10 +22,19 @@ long readLen() {
   return distance;
 }
 
+void blink(int onTime, long offTime) {
+  digitalWrite(ledPin, HIGH);   
+  delay(onTime);              
+  digitalWrite(ledPin, LOW);    
+  delay(offTime);
+}
+
 void loop() {
   long distance = readLen();
   Serial.print(distance);
   Serial.println(" cm");
-  delay(500);
+  if (distance <= 180) {
+    blink(10, distance * 3); 
+  }
 }
 
