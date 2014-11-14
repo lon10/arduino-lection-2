@@ -1,4 +1,4 @@
-#Simple arduino code
+Simple arduino code
 ==================================
 
 #####Platform - Arduino Mega R3
